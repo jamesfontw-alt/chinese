@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f2e8">
+  <title>胖老師的國文教學網｜第一課：岳納珊的飛行</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #193b43;
+      --muted: #647679;
+      --teal: #176c68;
+      --teal-dark: #105451;
+      --sky: #e6f1eb;
+      --paper: #fffdf8;
+      --sand: #f6f2e8;
+      --gold: #e6b752;
+      --line: #e5e4d9;
+      --shadow: 0 18px 48px rgba(25, 59, 67, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--sand);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.8;
+    }
+    a { color: inherit; }
+    .container { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      background: rgba(255, 253, 248, .94);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: white;
+      background: var(--teal);
+      font-size: 1.3rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      border-radius: 999px;
+      padding: 9px 17px;
+      color: white !important;
+      background: var(--teal);
+    }
+    .hero {
+      padding: 76px 0 66px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 82% 14%, rgba(230, 183, 82, .26), transparent 27%),
+        linear-gradient(135deg, #e8f1e9 0%, #f6f2e8 70%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 46px;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--teal);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+    h1 {
+      margin: 14px 0 16px;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.2;
+      letter-spacing: .02em;
+    }
+    .hero p { max-width: 560px; color: #506669; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 10px 20px;
+      border: 1px solid var(--teal);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--teal); color: white; }
+    .button.secondary { color: var(--teal); background: rgba(255, 253, 248, .65); }
+    .hero-art {
+      min-height: 300px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .sun {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: 13%;
+      top: 5px;
+      border-radius: 50%;
+      background: #edc66c;
+      box-shadow: 0 0 0 22px rgba(237, 198, 108, .12);
+    }
+    .horizon {
+      position: absolute;
+      left: -4%;
+      right: -10%;
+      bottom: 22px;
+      height: 116px;
+      border-radius: 55% 45% 0 0;
+      background: linear-gradient(170deg, #8bb9ad, #397e79);
+      transform: rotate(-4deg);
+    }
+    .horizon::after {
+      content: "";
+      position: absolute;
+      left: -3%;
+      right: -3%;
+      top: 43px;
+      height: 2px;
+      background: rgba(255, 255, 255, .6);
+      box-shadow: 0 15px 0 rgba(255, 255, 255, .25), 0 30px 0 rgba(255, 255, 255, .18);
+    }
+    .bird {
+      position: absolute;
+      z-index: 1;
+      color: var(--ink);
+      font-size: 4.8rem;
+      line-height: 1;
+      transform: rotate(-12deg);
+      text-shadow: 0 8px 18px rgba(25, 59, 67, .12);
+    }
+    .bird.one { left: 22%; top: 88px; font-size: 3rem; transform: rotate(-22deg); }
+    .bird.two { right: 16%; top: 126px; font-size: 2.1rem; transform: rotate(8deg); }
+    .bird.main { left: 39%; top: 105px; }
+    .lesson-wrap { padding: 68px 0 86px; }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .section-heading h2, .lesson-title h2 {
+      margin: 4px 0 0;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      line-height: 1.35;
+    }
+    .section-heading h2 { font-size: 2rem; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .lesson-card {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+    .lesson-side {
+      padding: 30px 26px;
+      color: white;
+      background: var(--teal);
+    }
+    .lesson-number { color: #cce3d8; font-size: .82rem; font-weight: 900; letter-spacing: .14em; }
+    .lesson-side h3 {
+      margin: 10px 0 8px;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: 1.7rem;
+      line-height: 1.45;
+    }
+    .lesson-side p { color: #d9e9e0; font-size: .92rem; }
+    .side-label {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      color: #f8e4a5;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    .lesson-content { padding: 34px clamp(22px, 5vw, 54px); }
+    .lesson-title { display: flex; align-items: flex-start; gap: 16px; }
+    .lesson-icon {
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: #edf4ed;
+      font-size: 1.35rem;
+    }
+    .lesson-title h2 { font-size: 1.85rem; }
+    .lesson-title p { margin: 6px 0 0; color: var(--muted); }
+    .lesson-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 25px 0 30px;
+    }
+    .point {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fffefa;
+    }
+    .point strong { display: block; margin-bottom: 3px; color: var(--teal); }
+    .point span { color: var(--muted); font-size: .88rem; }
+    .story {
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+    .story h3, .study h3 {
+      margin: 0 0 12px;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: 1.3rem;
+    }
+    .story p { margin: 0 0 16px; color: #3f5558; }
+    .quote {
+      margin: 22px 0;
+      padding: 15px 20px;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      background: #faf5e8;
+      color: #51472f;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: 1.08rem;
+    }
+    .study {
+      margin-top: 34px;
+      padding: 25px;
+      border-radius: 18px;
+      background: var(--sky);
+    }
+    .study ul { margin: 0; padding-left: 1.25em; color: #385759; }
+    .study li + li { margin-top: 7px; }
+    .quiz {
+      margin-top: 34px;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--paper);
+    }
+    .quiz-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .quiz-heading h3 {
+      margin: 0 0 4px;
+      font-family: "Noto Serif TC", "PMingLiU", serif;
+      font-size: 1.5rem;
+    }
+    .quiz-heading p { margin: 0; color: var(--muted); }
+    .quiz-count {
+      flex: 0 0 auto;
+      padding: 5px 12px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--sky);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+    .question-list { display: grid; gap: 14px; }
+    .question {
+      min-width: 0;
+      margin: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+    }
+    .question legend {
+      max-width: 100%;
+      padding: 0 6px;
+      font-weight: 800;
+    }
+    .question-number { color: var(--teal); }
+    .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 9px 11px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: #f8f8f2;
+      cursor: pointer;
+    }
+    .choice:hover { border-color: #a7c9bd; background: #f0f6f0; }
+    .choice input { margin: 6px 0 0; accent-color: var(--teal); }
+    .question.is-correct { border-color: #86b7a0; background: #f1f8f2; }
+    .question.is-incorrect { border-color: #d99c8c; background: #fff5f1; }
+    .question.is-correct .choice.is-answer { border-color: #86b7a0; background: #e7f4e9; }
+    .question.is-incorrect .choice.is-selected { border-color: #d99c8c; background: #fff0e9; }
+    .answer-note { margin: 10px 0 0; color: #385759; font-size: .92rem; }
+    .quiz-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; }
+    .quiz-actions .button { font: inherit; cursor: pointer; }
+    .quiz-result { min-height: 1.8em; margin: 14px 0 0; color: var(--teal-dark); font-weight: 800; }
+    .quiz-result.error { color: #9b3c2d; }
+    .footer {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 28px, 600px); }
+      .nav { min-height: 66px; }
+      .nav-links { gap: 14px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 50px 0 36px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hero-art { min-height: 220px; }
+      .sun { width: 140px; height: 140px; }
+      .horizon { bottom: 12px; height: 90px; }
+      .bird.main { top: 73px; }
+      .bird.one { top: 58px; }
+      .bird.two { top: 95px; }
+      .lesson-wrap { padding: 48px 0 60px; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 8px; }
+      .lesson-card { grid-template-columns: 1fr; }
+      .lesson-side { padding: 23px 25px; }
+      .lesson-side h3 { margin-bottom: 2px; }
+      .lesson-side p { margin-bottom: 0; }
+      .side-label { margin-top: 12px; }
+      .lesson-content { padding: 26px 20px; }
+      .lesson-points { grid-template-columns: 1fr; gap: 9px; }
+      .point { padding: 12px 14px; }
+      .study { padding: 20px 17px; }
+      .quiz { padding: 20px 16px; }
+      .quiz-heading { display: block; }
+      .quiz-count { display: inline-block; margin-top: 10px; }
+      .question { padding: 14px 12px; }
+      .choices { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="主要導覽">
+      <a class="brand" href="#home" aria-label="胖老師的國文教學網首頁">
+        <span class="brand-mark" aria-hidden="true">文</span>
+        <span>胖老師的國文教學網</span>
+      </a>
+      <div class="nav-links">
+        <a href="#home">首頁</a>
+        <a href="#lesson-one">第一課</a>
+        <a href="#lesson-two">第二課</a>
+        <a class="nav-cta" href="#lesson-two">前往第二課　↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid container">
+        <div>
+          <span class="eyebrow">一起讀故事，也讀懂自己</span>
+          <h1>讓國文，<br>成為看世界的翅膀。</h1>
+          <p>歡迎來到胖老師的國文教學網！從一篇篇好故事出發，練習閱讀、思考，也找到勇敢追夢的力量。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#lesson-one">開始第一課</a>
+            <a class="button secondary" href="#study-notes">看看學習重點</a>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="海鷗飛過金色朝陽與海面">
+          <span class="sun"></span>
+          <span class="bird one" aria-hidden="true">⌁</span>
+          <span class="bird main" aria-hidden="true">⌁</span>
+          <span class="bird two" aria-hidden="true">⌁</span>
+          <span class="horizon"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-wrap container" id="lesson-one">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">COURSE 01</span>
+          <h2>第一課</h2>
+        </div>
+        <p>從岳納珊的飛行，讀懂理想與堅持。</p>
+      </div>
+
+      <article class="lesson-card">
+        <aside class="lesson-side">
+          <span class="lesson-number">第一課　｜　閱讀與思考</span>
+          <h3>飛向更高的天空</h3>
+          <p>一隻不甘於平凡的海鷗，如何飛出自己的新天地？</p>
+          <span class="side-label">主題：追求理想</span>
+        </aside>
+
+        <div class="lesson-content">
+          <div class="lesson-title">
+            <span class="lesson-icon" aria-hidden="true">🪽</span>
+            <div>
+              <span class="eyebrow">第一課</span>
+              <h2>岳納珊的飛行</h2>
+              <p>勇敢嘗試，讓每一次練習都離理想更近一步。</p>
+            </div>
+          </div>
+
+          <div class="lesson-points" id="study-notes">
+            <div class="point">
+              <strong>不滿足於現狀</strong>
+              <span>岳納珊不只想覓食，也想把飛行練得更好。</span>
+            </div>
+            <div class="point">
+              <strong>失敗後再出發</strong>
+              <span>即使失去平衡、掉進海裡，他仍繼續練習。</span>
+            </div>
+            <div class="point">
+              <strong>觀察並找方法</strong>
+              <span>他觀察獵鷹，想到併攏翅膀來提高速度。</span>
+            </div>
+          </div>
+
+          <section class="story" id="story">
+            <h3>課文故事</h3>
+            <p>清晨，金黃色的太陽在海面上閃耀。成群的海鷗為了爭奪小魚和麵包屑，尖聲呼叫、互不相讓。岳納珊看了很心煩，於是遠遠離開同伴，獨自練習飛行。</p>
+            <p>岳納珊不認為填飽肚子就夠了。他立志要飛得快、飛得高、飛得漂亮。為了追求理想，他忍受孤獨、譏嘲與痛苦，甚至把嘴裡的半條小魚吐掉，朝藍天勇往直上。他想知道海鷗究竟能飛多快，能不能像鷹一樣快。</p>
+            <p>第一次俯衝時，他接近海面後翻身爬升，卻因雙翼失去重心而掉進水裡。但岳納珊沒有灰心。他再次嘗試，努力保持翅膀平穩，讓速度增加將近一倍，打破了海鷗飛行的紀錄。</p>
+            <p>他從日出練到日落，練習點水、翻觔斗、迴旋和俯衝，心裡充滿喜悅。他相信，這樣的生活才有意義，也證明海鷗是完美而聰明的動物。</p>
+            <p>後來，岳納珊發現獵鷹飛得更快。他觀察到獵鷹的翅膀短而有力，便靈機一動，把自己的翅膀併攏，只露出尖翼。果然，他像獵鷹一樣快速飛行，甚至打破獵鷹的紀錄。這不只是岳納珊的勝利，也為鷗族開創了新的時代。</p>
+            <blockquote class="quote">「既然要飛，就要飛得快，飛得高，飛得好。」</blockquote>
+          </section>
+
+          <section class="study">
+            <h3>胖老師的閱讀小提醒</h3>
+            <ul>
+              <li>岳納珊的目標不只是飛得快，更是突破自己、追求理想。</li>
+              <li>故事中的挫折讓我們看見：堅持之外，也要觀察問題、想出新方法。</li>
+              <li>想一想：如果你像岳納珊一樣遇到困難，會如何調整方法再試一次？</li>
+            </ul>
+          </section>
+
+          <section class="quiz" aria-labelledby="quiz-title-one">
+            <div class="quiz-heading">
+              <div>
+                <h3 id="quiz-title-one">第一課課後練習</h3>
+                <p>選出每題最適合的答案，完成後按下「交卷看結果」。</p>
+              </div>
+              <span class="quiz-count">10 題・每題四選一</span>
+            </div>
+            <form class="lesson-quiz" data-quiz="lesson-one">
+              <div class="question-list"></div>
+              <div class="quiz-actions">
+                <button class="button primary" type="submit">交卷看結果</button>
+                <button class="button secondary" type="reset">重新作答</button>
+              </div>
+              <p class="quiz-result" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="lesson-wrap container" id="lesson-two">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">COURSE 02</span>
+          <h2>第二課</h2>
+        </div>
+        <p>從小王子與狐狸的相遇，認識友誼與珍惜。</p>
+      </div>
+
+      <article class="lesson-card">
+        <aside class="lesson-side">
+          <span class="lesson-number">第二課　｜　閱讀與思考</span>
+          <h3>小王子與狐狸</h3>
+          <p>一段從陌生到相知的相遇，讓小王子重新理解自己的牽掛。</p>
+          <span class="side-label">主題：友誼與珍惜</span>
+        </aside>
+
+        <div class="lesson-content">
+          <div class="lesson-title">
+            <span class="lesson-icon" aria-hidden="true">🦊</span>
+            <div>
+              <span class="eyebrow">第二課</span>
+              <h2>小王子與狐狸</h2>
+              <p>真正的關係，需要時間、耐心與用心相待。</p>
+            </div>
+          </div>
+
+          <div class="lesson-points">
+            <div class="point">
+              <strong>從陌生開始</strong>
+              <span>狐狸希望小王子慢慢靠近，讓彼此有機會認識。</span>
+            </div>
+            <div class="point">
+              <strong>用時間建立關係</strong>
+              <span>固定相見、耐心相處，使平凡日子有了特別意義。</span>
+            </div>
+            <div class="point">
+              <strong>珍惜獨一無二</strong>
+              <span>小王子明白，付出的心意讓自己的玫瑰變得珍貴。</span>
+            </div>
+          </div>
+
+          <section class="story" id="story-two">
+            <h3>課文故事：狐狸教小王子的事</h3>
+            <p>小王子在旅途中遇見一隻狐狸。狐狸想和他成為朋友，但兩人起初並不熟悉。狐狸告訴小王子，親近不能急著完成；要從保持距離開始，一點一點增加信任，並用耐心了解彼此。</p>
+            <p>於是，小王子每天在相近的時間來找狐狸，逐漸坐得近一些。他們在相處中建立起只有彼此才懂的默契。原本平常的時刻，也因為期待相見而變得特別；周圍的景物更讓狐狸想起與朋友共度的日子。</p>
+            <p>分別的時候到了，小王子知道離開會讓狐狸難過，自己也感到不捨。狐狸卻認為，即使友誼帶來離別的眼淚，這段相遇仍值得珍惜。小王子也因此想起自己的玫瑰：他曾花時間照料她、聽她說話，這些共同經歷使她對他有特別的意義。</p>
+            <p>狐狸讓小王子懂得，重要的事不一定能只靠眼睛看出來；要真正了解一個人，需要花時間相處、留心感受，並對自己珍惜的關係負起責任。</p>
+          </section>
+
+          <section class="study">
+            <h3>胖老師的閱讀小提醒</h3>
+            <ul>
+              <li>狐狸所說的「建立關係」，可以理解成透過相處與信任，讓彼此變得重要。</li>
+              <li>小王子想起玫瑰，是因為他曾為她付出時間與心意，不是因為她和其他玫瑰外表不同。</li>
+              <li>想一想：你曾為哪段友誼付出時間？那些共同回憶帶給你什麼感受？</li>
+            </ul>
+          </section>
+
+          <section class="quiz" aria-labelledby="quiz-title-two">
+            <div class="quiz-heading">
+              <div>
+                <h3 id="quiz-title-two">第二課課後練習</h3>
+                <p>選出每題最適合的答案，完成後按下「交卷看結果」。</p>
+              </div>
+              <span class="quiz-count">10 題・每題四選一</span>
+            </div>
+            <form class="lesson-quiz" data-quiz="lesson-two">
+              <div class="question-list"></div>
+              <div class="quiz-actions">
+                <button class="button primary" type="submit">交卷看結果</button>
+                <button class="button secondary" type="reset">重新作答</button>
+              </div>
+              <p class="quiz-result" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">胖老師的國文教學網　・　陪你讀故事、練思考、勇敢向前飛</div>
+  </footer>
+  <script>
+    const lessonQuestions = {
+      "lesson-one": [
+      {
+        prompt: "岳納珊看見同伴爭搶食物時，心情如何？",
+        choices: ["非常興奮", "好不心煩", "覺得肚子餓", "完全不在意"],
+        answer: 1,
+        explanation: "他不喜歡同伴只顧著爭搶食物，因此感到心煩。"
+      },
+      {
+        prompt: "岳納珊認為海鷗學會飛行後，還應該追求什麼？",
+        choices: ["飛得快、飛得高、飛得好", "抓到最多的魚", "成為海鷗群的領袖", "飛到最遠的島"],
+        answer: 0,
+        explanation: "岳納珊不滿足於會飛，更立志要飛得快、高、好。"
+      },
+      {
+        prompt: "岳納珊為什麼把銜在嘴裡的半條小魚吐掉？",
+        choices: ["魚已經壞掉了", "他想把魚讓給同伴", "他有比覓食更重要的事要做", "他不小心把魚弄掉"],
+        answer: 2,
+        explanation: "他想繼續練習飛行，覺得追求理想比覓食更重要。"
+      },
+      {
+        prompt: "岳納珊第一次高速俯衝後，為什麼掉進海裡？",
+        choices: ["被海浪打中", "雙翼突然失去重心", "撞到另一隻海鷗", "他故意跳進海裡"],
+        answer: 1,
+        explanation: "他翻身爬升時雙翼失去重心，於是掉進水裡。"
+      },
+      {
+        prompt: "第一次失敗後，岳納珊怎麼做？",
+        choices: ["從此不再練習", "回去和同伴搶食物", "飛到更高處再嘗試", "請獵鷹替他飛"],
+        answer: 2,
+        explanation: "岳納珊沒有灰心，而是飛到更高的地方再作嘗試。"
+      },
+      {
+        prompt: "岳納珊保持翅膀平穩不動，讓飛行速度增加將近多少？",
+        choices: ["十分之一", "四分之一", "一半", "一倍"],
+        answer: 3,
+        explanation: "故事提到他保持翅膀平穩後，速度增加將近一倍。"
+      },
+      {
+        prompt: "岳納珊從日出飛到日落，主要在做什麼？",
+        choices: ["練習點水、翻觔斗、迴旋和俯衝", "尋找新的食物來源", "教小海鷗游泳", "追趕海上的船隻"],
+        answer: 0,
+        explanation: "他日以繼夜練習各種飛行技巧，享受飛翔的喜悅。"
+      },
+      {
+        prompt: "故事中，獵鷹為什麼飛得比岳納珊快？",
+        choices: ["獵鷹比較年輕", "獵鷹的翅膀短而有力", "獵鷹常常吃很多魚", "獵鷹飛得比較低"],
+        answer: 1,
+        explanation: "岳納珊觀察到獵鷹的翅膀短而有力，而海鷗的翅膀太長。"
+      },
+      {
+        prompt: "岳納珊想到什麼方法，讓自己飛得像獵鷹一樣快？",
+        choices: ["把翅膀併攏，只露出尖翼", "不斷用力拍打翅膀", "張開翅膀迎著風飛", "請同伴拉著他飛"],
+        answer: 0,
+        explanation: "他把翅膀併攏，只露出尖翼，成功提高飛行速度。"
+      },
+      {
+        prompt: "岳納珊打破獵鷹飛行紀錄，對鷗族有什麼意義？",
+        choices: ["大家從此不必學飛", "鷗族開始只吃麵包屑", "他為鷗族開創了新的時代", "獵鷹不再能飛行"],
+        answer: 2,
+        explanation: "岳納珊的勝利成為鷗族歷史的重要時刻，開創新的時代。"
+      }
+      ],
+      "lesson-two": [
+        {
+          prompt: "小王子在旅途中遇見了誰？",
+          choices: ["一位飛行員", "一隻狐狸", "一位國王", "一群海鷗"],
+          answer: 1,
+          explanation: "第二課聚焦在小王子與狐狸相遇、成為朋友的故事。"
+        },
+        {
+          prompt: "狐狸希望小王子怎麼和自己建立關係？",
+          choices: ["立刻帶牠離開", "送牠很多食物", "耐心相處，慢慢熟悉彼此", "每天和牠比賽"],
+          answer: 2,
+          explanation: "狐狸希望小王子不要著急，而是透過時間逐漸建立信任。"
+        },
+        {
+          prompt: "小王子每天在相近的時間來找狐狸，有什麼作用？",
+          choices: ["讓狐狸知道什麼時候期待相見", "讓他可以更快離開", "幫狐狸找到食物", "讓其他動物都認識他"],
+          answer: 0,
+          explanation: "固定相見讓狐狸有所期待，也成為兩人建立默契的一部分。"
+        },
+        {
+          prompt: "在這段故事中，關係為什麼不能急著建立？",
+          choices: ["因為旅程太短", "因為彼此需要時間認識並培養信任", "因為狐狸不會說話", "因為小王子不喜歡交朋友"],
+          answer: 1,
+          explanation: "了解彼此、培養信任需要耐心與相處的時間。"
+        },
+        {
+          prompt: "分別時，狐狸對這段友誼抱持什麼想法？",
+          choices: ["只記得難過，不願再想起", "認為相遇毫無意義", "即使不捨，這段相遇仍值得珍惜", "希望小王子立刻回來"],
+          answer: 2,
+          explanation: "狐狸知道分別會難過，但仍珍惜兩人相處帶來的美好。"
+        },
+        {
+          prompt: "小王子為什麼覺得自己的玫瑰特別？",
+          choices: ["她是世界上唯一的玫瑰", "她外表比其他玫瑰漂亮", "他曾花時間照料她並與她相處", "狐狸命令他這麼想"],
+          answer: 2,
+          explanation: "小王子曾為玫瑰付出時間與心意，因此她對他有獨特的意義。"
+        },
+        {
+          prompt: "故事中的「固定相見」最能表現什麼？",
+          choices: ["兩人逐漸建立期待與默契", "狐狸想逃離家園", "小王子忘了回家的路", "他們不想和任何人說話"],
+          answer: 0,
+          explanation: "相近時間的相見成為兩人共同的習慣，也讓彼此更親近。"
+        },
+        {
+          prompt: "狐狸教小王子的道理，最接近下列哪一項？",
+          choices: ["交朋友只要送禮物", "重要的關係需要用心相處與珍惜", "離開家鄉就能交到朋友", "外表相似的人一定最親近"],
+          answer: 1,
+          explanation: "故事強調用時間與心意建立關係，並珍惜彼此的牽掛。"
+        },
+        {
+          prompt: "「重要的事不一定能只靠眼睛看出來」主要提醒我們什麼？",
+          choices: ["不要相信任何人", "觀察外表比了解內心重要", "要用心感受並了解彼此", "只要閉上眼睛就能交朋友"],
+          answer: 2,
+          explanation: "真正理解一段關係，需要用心相處，而不只看外表。"
+        },
+        {
+          prompt: "小王子離開狐狸時，故事想表達哪一種感受？",
+          choices: ["友誼不值得付出", "珍貴的相遇即使伴隨不捨，仍有意義", "分別代表彼此從未相識", "只要離開就能忘記回憶"],
+          answer: 1,
+          explanation: "分別雖然令人不捨，但共同經歷讓這段友誼依然珍貴。"
+        }
+      ]
+    };
+    const letters = ["A", "B", "C", "D"];
+    document.querySelectorAll(".lesson-quiz").forEach((quizForm) => {
+      const questions = lessonQuestions[quizForm.dataset.quiz];
+      const questionList = quizForm.querySelector(".question-list");
+      const quizResult = quizForm.querySelector(".quiz-result");
+
+      questionList.innerHTML = questions.map((question, index) => `
+        <fieldset class="question" data-question="${index}">
+          <legend><span class="question-number">${index + 1}.</span> ${question.prompt}</legend>
+          <div class="choices">
+            ${question.choices.map((choice, choiceIndex) => `
+              <label class="choice">
+                <input type="radio" name="${quizForm.dataset.quiz}-question-${index}" value="${choiceIndex}" required>
+                <span>${letters[choiceIndex]}. ${choice}</span>
+              </label>
+            `).join("")}
+          </div>
+          <p class="answer-note" hidden></p>
+        </fieldset>
+      `).join("");
+
+      quizForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!quizForm.reportValidity()) {
+          quizResult.textContent = "還有題目尚未作答，請完成全部 10 題再交卷。";
+          quizResult.classList.add("error");
+          quizForm.querySelector(":invalid")?.closest(".question")?.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+
+        let score = 0;
+        questions.forEach((question, index) => {
+          const card = questionList.querySelector(`[data-question="${index}"]`);
+          const selected = Number(quizForm.elements[`${quizForm.dataset.quiz}-question-${index}`].value);
+          const note = card.querySelector(".answer-note");
+          const correct = selected === question.answer;
+          if (correct) score += 10;
+
+          card.classList.toggle("is-correct", correct);
+          card.classList.toggle("is-incorrect", !correct);
+          card.querySelectorAll(".choice").forEach((choice, choiceIndex) => {
+            choice.classList.toggle("is-selected", choiceIndex === selected);
+            choice.classList.toggle("is-answer", choiceIndex === question.answer);
+          });
+          note.hidden = false;
+          note.textContent = `${correct ? "答對了！" : `正確答案：${letters[question.answer]}。`}${question.explanation}`;
+        });
+
+        quizResult.classList.remove("error");
+        quizResult.textContent = `完成作答！你的分數是 ${score} 分（答對 ${score / 10} 題，共 10 題）。`;
+        quizResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      quizForm.addEventListener("reset", () => {
+        requestAnimationFrame(() => {
+          questionList.querySelectorAll(".question").forEach((card) => {
+            card.classList.remove("is-correct", "is-incorrect");
+            card.querySelectorAll(".choice").forEach((choice) => {
+              choice.classList.remove("is-selected", "is-answer");
+            });
+            const note = card.querySelector(".answer-note");
+            note.hidden = true;
+            note.textContent = "";
+          });
+          quizResult.textContent = "";
+          quizResult.classList.remove("error");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
